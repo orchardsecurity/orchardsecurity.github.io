@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orchard Security - Deep-Rooted Protection for Your Code</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --deep-oak: #2C4A3D;
+            --security-green: #4A7C59;
+            --branch-gold: #D4A574;
+            --warm-cream: #F4E7CE;
+            --bark-gray: #8B8680;
+            --midnight: #1A1A1A;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--midnight);
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1.5rem 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        nav.scrolled {
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--deep-oak);
+        }
+        
+        .logo svg {
+            width: 40px;
+            height: 40px;
+        }
+        
+        .nav-cta {
+            background: var(--security-green);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .nav-cta:hover {
+            background: var(--deep-oak);
+            transform: translateY(-2px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(180deg, #F4E7CE 0%, #FFFFFF 100%);
+            padding-top: 80px;
+        }
+        
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .hero-content {
+            z-index: 2;
+        }
+        
+        .hero-content h1 {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 3.5rem;
+            line-height: 1.2;
+            color: var(--deep-oak);
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-content .subtitle {
+            font-size: 1.5rem;
+            color: var(--security-green);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        
+        .hero-content p {
+            font-size: 1.25rem;
+            color: var(--bark-gray);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+        
+        .hero-illustration {
+            position: relative;
+        }
+        
+        .hero-illustration img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.1));
+        }
+        
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .cta-primary {
+            background: var(--security-green);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+        
+        .cta-primary:hover {
+            background: var(--deep-oak);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .cta-secondary {
+            background: transparent;
+            color: var(--deep-oak);
+            padding: 1rem 2rem;
+            border: 2px solid var(--deep-oak);
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+        
+        .cta-secondary:hover {
+            background: var(--deep-oak);
+            color: white;
+        }
+        
+        /* Features Strip */
+        .features-strip {
+            background: white;
+            padding: 4rem 2rem;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+        
+        .feature {
+            text-align: center;
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+        }
+        
+        .feature h3 {
+            color: var(--deep-oak);
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+        }
+        
+        .feature p {
+            color: var(--bark-gray);
+            line-height: 1.6;
+        }
+        
+        /* Philosophy Section */
+        .philosophy {
+            background: linear-gradient(135deg, var(--deep-oak) 0%, var(--security-green) 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+        
+        .philosophy-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .philosophy h2 {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .philosophy-quote {
+            font-size: 1.75rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+            opacity: 0.95;
+        }
+        
+        .philosophy p {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+        
+        /* Products Grid */
+        .products {
+            padding: 5rem 2rem;
+            background: var(--warm-cream);
+        }
+        
+        .products-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .products h2 {
+            text-align: center;
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 2.5rem;
+            color: var(--deep-oak);
+            margin-bottom: 3rem;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .product-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            border-top: 4px solid var(--security-green);
+            transition: all 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .product-card h3 {
+            color: var(--security-green);
+            margin-bottom: 1rem;
+        }
+        
+        .product-card p {
+            color: var(--bark-gray);
+            line-height: 1.6;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: white;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+        
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-section h2 {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 2.5rem;
+            color: var(--deep-oak);
+            margin-bottom: 1rem;
+        }
+        
+        .cta-section p {
+            font-size: 1.25rem;
+            color: var(--bark-gray);
+            margin-bottom: 2rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--deep-oak);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        footer p {
+            opacity: 0.8;
+        }
+        
+        footer a {
+            color: var(--branch-gold);
+            text-decoration: none;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content .subtitle {
+                font-size: 1.25rem;
+            }
+            
+            .hero-illustration {
+                order: -1;
+            }
+            
+            .cta-group {
+                justify-content: center;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-content > * {
+            animation: fadeIn 0.8s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+        .hero-content > *:nth-child(2) { animation-delay: 0.2s; }
+        .hero-content > *:nth-child(3) { animation-delay: 0.3s; }
+        .hero-content > *:nth-child(4) { animation-delay: 0.4s; }
+        
+        .hero-illustration {
+            animation: fadeIn 1s ease-out forwards;
+            animation-delay: 0.5s;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="50" cy="30" rx="28" ry="22" fill="#4A7C59" opacity="0.9"/>
+                    <ellipse cx="50" cy="28" rx="23" ry="18" fill="#5A8969" opacity="0.8"/>
+                    <rect x="46" y="45" width="8" height="25" fill="#6B4C3A"/>
+                    <path d="M50 70 L40 85 M50 70 L60 85 M50 70 L35 82 M50 70 L65 82" 
+                          stroke="#2C3E2F" stroke-width="2" fill="none" stroke-linecap="round"/>
+                    <circle cx="40" cy="30" r="2" fill="#D4A574"/>
+                    <circle cx="60" cy="28" r="2" fill="#D4A574"/>
+                    <circle cx="50" cy="35" r="2" fill="#D4A574"/>
+                </svg>
+                <span>Orchard Security</span>
+            </a>
+            <a href="#contact" class="nav-cta">Get Started</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Deep-Rooted Protection for Your Code</h1>
+                <p class="subtitle">From seedling to forest, we cultivate unshakeable security</p>
+                <p>Like a mighty oak with roots extending far beneath the surface, Orchard Security provides comprehensive protection that grows stronger with time. Your code deserves security that's as natural as it is powerful.</p>
+                <div class="cta-group">
+                    <a href="#demo" class="cta-primary">Request Demo</a>
+                    <a href="#products" class="cta-secondary">Explore Solutions</a>
+                </div>
+            </div>
+            <div class="hero-illustration">
+                <img src="orchard-illustration.png" alt="Majestic oak tree with deep roots protecting an orchard">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Strip -->
+    <section class="features-strip">
+        <div class="features-container">
+            <div class="feature">
+                <svg class="feature-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="30" r="5" fill="#4A7C59"/>
+                    <circle cx="30" cy="60" r="5" fill="#4A7C59"/>
+                    <circle cx="70" cy="60" r="5" fill="#4A7C59"/>
+                    <path d="M50 35 L30 55 M50 35 L70 55 M30 65 L50 75 L70 65" stroke="#D4A574" stroke-width="2" fill="none"/>
+                </svg>
+                <h3>Root-Level Security</h3>
+                <p>Protection that extends deep into your infrastructure, securing every layer from the ground up</p>
+            </div>
+            <div class="feature">
+                <svg class="feature-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 20 Q30 30 30 50 Q30 70 50 80 Q70 70 70 50 Q70 30 50 20" fill="none" stroke="#4A7C59" stroke-width="3"/>
+                    <path d="M50 35 L50 65 M40 45 L50 50 L60 45" stroke="#D4A574" stroke-width="2"/>
+                </svg>
+                <h3>Natural Resilience</h3>
+                <p>Organic defense mechanisms that adapt and strengthen against evolving threats</p>
+            </div>
+            <div class="feature">
+                <svg class="feature-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="25" fill="none" stroke="#4A7C59" stroke-width="2"/>
+                    <circle cx="50" cy="50" r="18" fill="none" stroke="#D4A574" stroke-width="2"/>
+                    <circle cx="50" cy="50" r="10" fill="none" stroke="#4A7C59" stroke-width="2"/>
+                    <circle cx="50" cy="50" r="3" fill="#D4A574"/>
+                </svg>
+                <h3>Complete Coverage</h3>
+                <p>Like a protective canopy, we shield every branch of your code tree</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="philosophy">
+        <div class="philosophy-container">
+            <h2>The Orchard Philosophy</h2>
+            <p class="philosophy-quote">"From tiny acorns, mighty oaks grow"</p>
+            <p>We believe security isn't just about protection—it's about cultivation. Every line of code, every system, every application in your ecosystem deserves to thrive in a secure environment. Our approach nurtures your digital forest from roots to canopy.</p>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="products" id="products">
+        <div class="products-container">
+            <h2>Our Security Suite</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <h3>🌱 Software Security</h3>
+                    <p>Comprehensive application protection with continuous monitoring throughout the development lifecycle</p>
+                </div>
+                <div class="product-card">
+                    <h3>🌳 Cloud Security</h3>
+                    <p>Protect your cloud-native applications with automated policies and compliance monitoring</p>
+                </div>
+                <div class="product-card">
+                    <h3>🍃 Open Source Security</h3>
+                    <p>Manage dependencies and ensure license compliance across your entire codebase</p>
+                </div>
+                <div class="product-card">
+                    <h3>🌿 Mobile Security</h3>
+                    <p>End-to-end protection for iOS and Android applications from development to runtime</p>
+                </div>
+                <div class="product-card">
+                    <h3>🌲 Firmware Security</h3>
+                    <p>Deep-level protection for embedded systems and IoT devices from silicon up</p>
+                </div>
+                <div class="product-card">
+                    <h3>🍂 Embedded Security</h3>
+                    <p>Specialized protection for resource-constrained environments with minimal overhead</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="cta-container">
+            <h2>Plant the Seeds of Security Today</h2>
+            <p>Join organizations that trust Orchard Security to protect their digital ecosystem</p>
+            <div class="cta-group" style="justify-content: center;">
+                <a href="#" class="cta-primary">Start Free Trial</a>
+                <a href="#" class="cta-secondary">Schedule Consultation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Orchard Security. Cultivating secure software ecosystems.</p>
+        <p><a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Contact</a></p>
+    </footer>
+
+    <script>
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
